@@ -100,13 +100,6 @@ bool CustomSqlDataSource::checkConnection()
 
         if (newFile.exists()) {
 
-            // Remove the old connection if it exists
-            if(mSqlConnector){
-                disconnect(mSqlConnector, SIGNAL(reply(const bb::data::DataAccessReply&)), this,
-                        SLOT(onLoadAsyncResultData(const bb::data::DataAccessReply&)));
-                delete mSqlConnector;
-            }
-
             // Set up a connection to the data base
             mSqlConnector = new SqlConnection(mSourceInDataFolder, "connect");
 
